@@ -1,10 +1,11 @@
 package fr.pizzeria.console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PizzeriaAdminConsoleApp {
+	
+	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -34,17 +35,13 @@ public class PizzeriaAdminConsoleApp {
 		pizzas.add(pizzanb6);
 		pizzas.add(pizzanb7);
 		pizzas.add(pizzanb8);
-		
-		
-		
-		Scanner sc = new Scanner(System.in);
-		
+	
 
-		int rep = 0;
+		String rep = "";
 		do {
 			System.out.println("Saisir un des numéros pour accéder aux fonctionnalités");
-			rep = sc.nextInt();
-			if (rep == 1) {
+			rep = sc.nextLine();
+			if (rep.equals("1")) {
 				
 				System.out.println("Liste des pizzas");
 				
@@ -52,55 +49,95 @@ public class PizzeriaAdminConsoleApp {
 					System.out.println(pizza);
 				}
 			}
-			else if (rep == 2) {
+			else if (rep.equals("2")) {
 				
 				System.out.println("Ajout d'une nouvelle pizza");
 				String newcode;
 				String newnom;
 				double newprix;
 				
+				
 				do {
 				
 						System.out.println("Veuillez insérer le code la pizza");
-				
 							newcode = sc.nextLine();
 							
 							do {
 							
-								System.out.println("Veuillez insérer le nom de la pizza");
+									System.out.println("Veuillez insérer le nom de la pizza");
 								
 									newnom = sc.nextLine();
 									
 									do {
 									
-										System.out.println("Veuillez insérer le prix de la pizza");
+											System.out.println("Veuillez insérer le prix de la pizza");
 										
-											newprix = sc.nextDouble();
+											String newprixStr = sc.nextLine();
+											newprix = Double.parseDouble(newprixStr);
 											
 											
 											Pizza nouveau = new Pizza(newcode,newnom,newprix);
 											pizzas.add(nouveau);
+											for(Pizza pizza: pizzas){
+												System.out.println(pizza);
+											}
 											
 										}while(newprix<0);
 								
 								}while(newnom=="");
 						
-					}while(newcode=="");									
+					}while(newcode==null);									
 
 			}
-			else if (rep == 3) {
+			else if (rep.equals("3")) {
 				
 				System.out.println("Mise à jour d'une pizza");
+				
+				String editcode;
+				String editnom;
+				double editprix;
+				
+				do {
+					
+					System.out.println("Veuillez insérer le code la pizza");
+						editcode = sc.nextLine();
+						
+						do {
+						
+								System.out.println("Veuillez insérer le nom de la pizza");
+							
+								editnom = sc.nextLine();
+								
+								do {
+								
+										System.out.println("Veuillez insérer le prix de la pizza");
+									
+										String editprixStr = sc.nextLine();
+										editprix = Double.parseDouble(editprixStr);
+										
+										
+										Pizza.set(editcode,editnom,editprix);
+										for(Pizza pizza: pizzas){
+											System.out.println(pizza);
+										}
+										
+									}while(editprix<0);
+							
+							}while(editnom=="");
+					
+				}while(editcode==null);	
+				
+				
 			}
-			else if (rep == 4) {
+			else if (rep.equals("4")) {
 				
 				System.out.println("Suppression d'une pizza");
 			}
-			else if (rep == 99) {
+			else if (rep.equals("99")) {
 				System.out.println("Au revoir ");
 			}
 			
-		} while (rep != 1 && rep!=2 && rep!=3 && rep!=4 && rep!=99 );
+		} while (!rep.equals("99"));
 		
 		
 		
