@@ -1,10 +1,10 @@
 package fr.pizzeria.console;
 
-public class OptionMenu {
+public abstract class OptionMenu {
 	
-	public OptionMenu() {
+	public  OptionMenu() {
 		
 		
 	}
-
+	
 }
