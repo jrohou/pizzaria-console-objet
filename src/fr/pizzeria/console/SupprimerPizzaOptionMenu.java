@@ -1,10 +1,17 @@
 package fr.pizzeria.console;
 
-public class SupprimerPizzaOptionMenu extends Pizza {
+import java.util.ArrayList;
+import java.util.Scanner;
 
-	public SupprimerPizzaOptionMenu(String code, String nom, double prix) {
-		super(code, nom, prix);
-		// TODO Auto-generated constructor stub
+import fr.pizzeria.dao.PizzaDaoMemoire;
+
+public class SupprimerPizzaOptionMenu extends OptionMenu {
+
+	public SupprimerPizzaOptionMenu(PizzaDaoMemoire dao) {
+		this.dao = dao;
+}
+
+	public void execute(Scanner sc) {
+		//TODO à implémebter
 	}
-
 }

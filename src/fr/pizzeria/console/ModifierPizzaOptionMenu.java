@@ -3,12 +3,19 @@ package fr.pizzeria.console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.pizzeria.dao.PizzaDaoMemoire;
+
 public class ModifierPizzaOptionMenu extends OptionMenu {
 
-	ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+	/**
+	 * Contructor
+	 */
+	public ModifierPizzaOptionMenu(PizzaDaoMemoire dao) {
+			this.dao = dao;
+	}
 
 	private boolean exists(int idpizza) {
-		for (Pizza pizza : pizzas) {
+		for (Pizza pizza : dao.findAllPizzas()) {
 			if (pizza.id == idpizza) {
 				return true;
 			}
@@ -17,17 +24,6 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 	}
 
 	/**
-	 * Contructor
-	 * 
-	 * @param sc
-	 */
-
-	public ModifierPizzaOptionMenu() {
-
-	}
-
-	/**
-	 * Creates a method "execute" for app.java
 	 * Ask the pizza's number
 	 * Edit info of the pizza
 	 * Update values
@@ -67,14 +63,8 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 
 							String editprixStr = sc.nextLine();
 							editprix = Double.parseDouble(editprixStr);
-
-							for (Pizza pizza : pizzas) {
-								if (pizza.getId() == idpizza) {
-									pizza.setCode(editcode);
-									pizza.setNom(editnom);
-									pizza.setPrix(editprix);
-								}
-							}
+							
+							dao.updatePizza(idpizza, editcode, editnom, editprix);
 
 						} while (editprix < 0);
 

@@ -3,21 +3,20 @@ package fr.pizzeria.console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.pizzeria.dao.PizzaDaoMemoire;
+
 public class AjouterPizzaOptionMenu extends OptionMenu {
 
 	String newcode;
 	String newnom;
 	double newprix;
-	ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
 
 	/**
-	 * Constructor
-	 * 
+	 * Contructor
 	 */
-
-	public AjouterPizzaOptionMenu() {
-
-	}
+	public AjouterPizzaOptionMenu(PizzaDaoMemoire dao) {
+		this.dao = dao;
+}
 
 	/**
 	 * Creates a method "execute" for app.java
@@ -50,10 +49,8 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 					newprix = Double.parseDouble(newprixStr);
 
 					Pizza nouveau = new Pizza(newcode, newnom, newprix);
-					pizzas.add(nouveau);
-					for (Pizza pizza : pizzas) {
-						System.out.println(pizza);
-					}
+					
+					dao.savePizza(nouveau);
 
 				} while (newprix < 0);
 

@@ -3,9 +3,9 @@ package fr.pizzeria.console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ListerPizzasOptionMenu extends OptionMenu {
+import fr.pizzeria.dao.PizzaDaoMemoire;
 
-	ArrayList<Pizza> pizzas;
+public class ListerPizzasOptionMenu extends OptionMenu {
 
 	/**
 	 * Contructor
@@ -13,10 +13,8 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 	 * @param sc
 	 */
 
-	public ListerPizzasOptionMenu(ArrayList<Pizza> pizzas) {
-			this.pizzas = pizzas;
-		// TODO Auto-generated constructor stub
-
+	public ListerPizzasOptionMenu(PizzaDaoMemoire dao) {
+			this.dao = dao;
 	}
 
 	/**
@@ -29,11 +27,9 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 
 	public void execute(Scanner sc) {
 
-
-
 		System.out.println("Liste des pizzas");
 
-		for (Pizza pizza : pizzas) {
+		for (Pizza pizza : dao.findAllPizzas()) {
 			System.out.println(pizza);
 		}
 	}
