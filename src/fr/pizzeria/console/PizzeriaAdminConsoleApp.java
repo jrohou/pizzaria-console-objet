@@ -6,18 +6,12 @@ import java.util.Scanner;
 public class PizzeriaAdminConsoleApp {
 
 	static Scanner sc = new Scanner(System.in);
-	static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		System.out.println("***** Pizzeria Administration *****");
-		System.out.println("1. Lister les pizzas");
-		System.out.println("2. Ajouter une nouvelle pizza");
-		System.out.println("3. Mettre à jour une pizza");
-		System.out.println("4. Supprimer une pizza");
-		System.out.println("99. Sortir");
-
+		
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		
 		Pizza pizzanb1 = new Pizza("PEP", "Pépéroni", 12.50);
 		Pizza pizzanb2 = new Pizza("MAR", "Margherita", 14.00);
 		Pizza pizzanb3 = new Pizza("REIN", "La Reine", 11.50);
@@ -36,121 +30,47 @@ public class PizzeriaAdminConsoleApp {
 		pizzas.add(pizzanb7);
 		pizzas.add(pizzanb8);
 
+		ListerPizzasOptionMenu lister = new ListerPizzasOptionMenu(pizzas);
+		AjouterPizzaOptionMenu ajouter = new AjouterPizzaOptionMenu();
+		ModifierPizzaOptionMenu modifier = new ModifierPizzaOptionMenu();
+		
+		/**
+		 * Print somes menus
+		 * Ask the menu's number to access the next step
+		 *  - Print pizza's arraylist
+		 *  - Add a new pizza
+		 *  - Edit information's pizza
+		 *  - Delete a pizza
+		 *  - Exist the app
+		 */
+		
+		System.out.println("***** Pizzeria Administration *****");
+		System.out.println("1. Lister les pizzas");
+		System.out.println("2. Ajouter une nouvelle pizza");
+		System.out.println("3. Mettre à jour une pizza");
+		System.out.println("4. Supprimer une pizza");
+		System.out.println("99. Sortir");
+
 		String rep = "";
-		do {
+
+		System.out.println("Saisir un des numéros pour accéder aux fonctionnalités");
+		rep = sc.nextLine();
+		switch (rep) {
+		case "1":
+			lister.execute(sc);
+			break;
+		case "2":
+			ajouter.execute(sc);
+		case "3":
+			modifier.execute(sc);
+		case "4":
+			// supprimer.execute(sc);
+		default:
 			System.out.println("Saisir un des numéros pour accéder aux fonctionnalités");
 			rep = sc.nextLine();
-			if (rep.equals("1")) {
 
-				System.out.println("Liste des pizzas");
-
-				for (Pizza pizza : pizzas) {
-					System.out.println(pizza);
-				}
-			} else if (rep.equals("2")) {
-
-				System.out.println("Ajout d'une nouvelle pizza");
-				String newcode;
-				String newnom;
-				double newprix;
-
-				do {
-
-					System.out.println("Veuillez insérer le code la pizza");
-					newcode = sc.nextLine();
-
-					do {
-
-						System.out.println("Veuillez insérer le nom de la pizza");
-
-						newnom = sc.nextLine();
-
-						do {
-
-							System.out.println("Veuillez insérer le prix de la pizza");
-
-							String newprixStr = sc.nextLine();
-							newprix = Double.parseDouble(newprixStr);
-
-							Pizza nouveau = new Pizza(newcode, newnom, newprix);
-							pizzas.add(nouveau);
-							for (Pizza pizza : pizzas) {
-								System.out.println(pizza);
-							}
-
-						} while (newprix < 0);
-
-					} while (newnom == "");
-
-				} while (newcode == null);
-
-			} else if (rep.equals("3")) {
-
-				System.out.println("Mise à jour d'une pizza");
-
-				int idpizza = -1;
-				String editcode;
-				String editnom;
-				double editprix;
-
-				while (!exists(idpizza)) {
-					System.out.println("Saisir le numéro de la pizza à modifier");
-					idpizza = sc.nextInt();
-					if (exists(idpizza)) {
-
-						do {
-
-							System.out.println("Veuillez insérer le code la pizza");
-							editcode = sc.nextLine();
-
-							do {
-
-								System.out.println("Veuillez insérer le nom de la pizza");
-
-								editnom = sc.nextLine();
-
-								do {
-
-									System.out.println("Veuillez insérer le prix de la pizza");
-
-									String editprixStr = sc.nextLine();
-									editprix = Double.parseDouble(editprixStr);
-
-									for (Pizza pizza : pizzas) {
-										if (pizza.getId() == idpizza) {
-											pizza.setCode(editcode);
-											pizza.setNom(editnom);
-											pizza.setPrix(editprix);
-										}
-									}
-
-								} while (editprix < 0);
-
-							} while (editnom == "");
-
-						} while (!exists(idpizza) || editcode == null);
-					}
-
-				}
-			} else if (rep.equals("4")) {
-
-				System.out.println("Suppression d'une pizza");
-
-			} else if (rep.equals("99")) {
-				System.out.println("Au revoir ");
-			}
-
-		} while (!rep.equals("99"));
-
-	}
-
-	private static boolean exists(int idpizza) {
-		for (Pizza pizza : pizzas) {
-			if (pizza.id == idpizza) {
-				return true;
-			}
 		}
-		return false;
+
 	}
 
 }
