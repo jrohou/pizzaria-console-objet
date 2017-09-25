@@ -3,6 +3,7 @@ package fr.pizzeria.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.console.CategoriePizza;
 import fr.pizzeria.console.Pizza;
 
 public class PizzaDaoMemoire implements IPizzaDao {
@@ -12,14 +13,14 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	public PizzaDaoMemoire() {
 
 		pizzas = new ArrayList<Pizza>();
-		Pizza pizzanb1 = new Pizza("PEP", "Pépéroni", 12.50);
-		Pizza pizzanb2 = new Pizza("MAR", "Margherita", 14.00);
-		Pizza pizzanb3 = new Pizza("REIN", "La Reine", 11.50);
-		Pizza pizzanb4 = new Pizza("FRO", "La 4 fromages", 12.00);
-		Pizza pizzanb5 = new Pizza("CAN", "La cannibale", 12.50);
-		Pizza pizzanb6 = new Pizza("SAV", "La savoyarde", 13.00);
-		Pizza pizzanb7 = new Pizza("ORI", "L'orientale", 13.50);
-		Pizza pizzanb8 = new Pizza("IND", "L'indienne", 14.00);
+		Pizza pizzanb1 = new Pizza("PEP", "Pépéroni",CategoriePizza.VIANDE, 12.50);
+		Pizza pizzanb2 = new Pizza("MAR", "Margherita",CategoriePizza.VIANDE, 14.00);
+		Pizza pizzanb3 = new Pizza("REIN", "La Reine",CategoriePizza.VIANDE, 11.50);
+		Pizza pizzanb4 = new Pizza("FRO", "La 4 fromages",CategoriePizza.SANS_VIANDE, 12.00);
+		Pizza pizzanb5 = new Pizza("CAN", "La cannibale",CategoriePizza.VIANDE, 12.50);
+		Pizza pizzanb6 = new Pizza("SAV", "La savoyarde",CategoriePizza.VIANDE, 13.00);
+		Pizza pizzanb7 = new Pizza("ORI", "L'orientale",CategoriePizza.VIANDE ,13.50);
+		Pizza pizzanb8 = new Pizza("IND", "L'indienne",CategoriePizza.POISSON, 14.00);
 
 		pizzas.add(pizzanb1);
 		pizzas.add(pizzanb2);
@@ -54,9 +55,19 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	}
 
 	@Override
-	public void deletePizza(Pizza pizza) {
-		// TODO Auto-generated method stub
+	public void deletePizza(int idpizza) {
+		for (Pizza p : findAllPizzas()) {
+			if (p.getId() == idpizza){
+				//p.remove(idpizza);
+			}
+		}
 		
+	}
+
+	@Override
+	public Pizza findCategorie() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

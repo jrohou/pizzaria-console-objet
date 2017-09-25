@@ -1,6 +1,6 @@
 package fr.pizzeria.console;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaDaoMemoire;
@@ -9,6 +9,7 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 
 	String newcode;
 	String newnom;
+	CategoriePizza newcategorie;
 	double newprix;
 
 	/**
@@ -40,19 +41,42 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 				System.out.println("Veuillez insérer le nom de la pizza");
 
 				newnom = sc.nextLine();
-
+				
 				do {
-
-					System.out.println("Veuillez insérer le prix de la pizza");
-
-					String newprixStr = sc.nextLine();
-					newprix = Double.parseDouble(newprixStr);
-
-					Pizza nouveau = new Pizza(newcode, newnom, newprix);
 					
-					dao.savePizza(nouveau);
+					System.out.println("Veuillez insérer la catégorie de pizza");
+					String categStr= sc.nextLine().toUpperCase();
+					
+					boolean trouver = false;
+					for( CategoriePizza catg : CategoriePizza.values()){
+						
+						if(categStr.equals(catg.getLibelle())){
+							
+							trouver = true;
+						}
+					}
+					if(!trouver){
+						newcategorie = CategoriePizza.UNKNOW_NAME;  
+					}
+					else {
+						newcategorie = CategoriePizza.valueOf(categStr);
+					}
+					
 
-				} while (newprix < 0);
+					do {
+	
+						System.out.println("Veuillez insérer le prix de la pizza");
+	
+						String newprixStr = sc.nextLine();
+						newprix = Double.parseDouble(newprixStr);
+	
+						Pizza nouveau = new Pizza(newcode, newnom, newcategorie, newprix);
+						
+						dao.savePizza(nouveau);
+
+					} while (newprix < 0);
+				
+				} while(newcategorie == null);
 
 			} while (newnom == "");
 
