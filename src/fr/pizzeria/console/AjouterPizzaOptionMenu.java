@@ -1,6 +1,5 @@
 package fr.pizzeria.console;
 
-
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaDaoMemoire;
@@ -17,13 +16,11 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 	 */
 	public AjouterPizzaOptionMenu(PizzaDaoMemoire dao) {
 		this.dao = dao;
-}
+	}
 
 	/**
-	 * Creates a method "execute" for app.java
-	 * Add a new pizza with somes questions
-	 * Add the new pizza in the arraylist
-	 * Print the arraylist
+	 * Creates a method "execute" for app.java Add a new pizza with somes
+	 * questions Add the new pizza in the arraylist Print the arraylist
 	 * 
 	 * @param sc
 	 */
@@ -41,42 +38,43 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 				System.out.println("Veuillez insérer le nom de la pizza");
 
 				newnom = sc.nextLine();
-				
+
 				do {
-					
+
 					System.out.println("Veuillez insérer la catégorie de pizza");
-					String categStr= sc.nextLine().toUpperCase();
-					
+					String categStr = sc.nextLine().toUpperCase();
+
 					boolean trouver = false;
-					for( CategoriePizza catg : CategoriePizza.values()){
-						
-						if(categStr.equals(catg.getLibelle())){
-							
+					for (CategoriePizza catg : CategoriePizza.values()) {
+
+						if (categStr.equals(catg.getLibelle())) {
+
 							trouver = true;
 						}
 					}
-					if(!trouver){
-						newcategorie = CategoriePizza.UNKNOW_NAME;  
-					}
-					else {
+					if (!trouver) {
+						newcategorie = CategoriePizza.UNKNOW_NAME;
+					} else {
 						newcategorie = CategoriePizza.valueOf(categStr);
 					}
-					
 
 					do {
-	
+
 						System.out.println("Veuillez insérer le prix de la pizza");
-	
+
 						String newprixStr = sc.nextLine();
 						newprix = Double.parseDouble(newprixStr);
-	
+
 						Pizza nouveau = new Pizza(newcode, newnom, newcategorie, newprix);
-						
+
 						dao.savePizza(nouveau);
+						for (Pizza pizza : dao.findAllPizzas()) {
+							System.out.println(pizza);
+						}
 
 					} while (newprix < 0);
-				
-				} while(newcategorie == null);
+
+				} while (newcategorie == null);
 
 			} while (newnom == "");
 
