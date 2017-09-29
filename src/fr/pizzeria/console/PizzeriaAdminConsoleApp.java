@@ -4,7 +4,6 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaDaoMemoire;
-
 public class PizzeriaAdminConsoleApp {
 
 	static Scanner sc = new Scanner(System.in);
