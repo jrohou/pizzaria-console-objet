@@ -32,14 +32,17 @@ public class PizzaDaoMemoire implements IPizzaDao {
 		pizzas.add(pizzanb8);
 	}
 
+	@Override
 	public void savePizza(Pizza pizza) {
 		pizzas.add(pizza);
 	}
 
+	@Override
 	public List<Pizza> findAllPizzas() {
 		return pizzas;
 	}
 
+	@Override
 	public void updatePizza(int idpizza, String editcode, String editnom, double editprix) {
 		for (Pizza p : findAllPizzas()) {
 			if (p.getId() == idpizza) {
@@ -51,6 +54,7 @@ public class PizzaDaoMemoire implements IPizzaDao {
 		
 	}
 
+	@Override
 	public void deletePizza(int idpizza) {
 		for (Pizza p : findAllPizzas()) {
 			if (p.getId() == idpizza){
@@ -60,6 +64,7 @@ public class PizzaDaoMemoire implements IPizzaDao {
 		
 	}
 
+	@Override
 	public Pizza findCategorie() {
 		// TODO Auto-generated method stub
 		return null;
