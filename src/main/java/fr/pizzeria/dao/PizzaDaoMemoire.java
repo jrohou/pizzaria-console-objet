@@ -12,7 +12,8 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	
 	public PizzaDaoMemoire() {
 
-		pizzas = new ArrayList<Pizza>();
+		ArrayList<Pizza> pizzas = new ArrayList<>();
+		
 		Pizza pizzanb1 = new Pizza("PEP", "Pépéroni",CategoriePizza.VIANDE, 12.50);
 		Pizza pizzanb2 = new Pizza("MAR", "Margherita",CategoriePizza.VIANDE, 14.00);
 		Pizza pizzanb3 = new Pizza("REIN", "La Reine",CategoriePizza.VIANDE, 11.50);
@@ -66,7 +67,6 @@ public class PizzaDaoMemoire implements IPizzaDao {
 
 	@Override
 	public Pizza findCategorie() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

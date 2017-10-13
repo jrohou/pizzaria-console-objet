@@ -2,14 +2,19 @@ package fr.pizzeria.console;
 
 
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import fr.pizzeria.dao.PizzaDaoMemoire;
+
 public class PizzeriaAdminConsoleApp {
 
 	static Scanner sc = new Scanner(System.in);
+	
+	private static Logger log = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		PizzaDaoMemoire dao = new PizzaDaoMemoire();
 
@@ -17,6 +22,7 @@ public class PizzeriaAdminConsoleApp {
 		AjouterPizzaOptionMenu ajouter = new AjouterPizzaOptionMenu(dao);
 		ModifierPizzaOptionMenu modifier = new ModifierPizzaOptionMenu(dao);
 		SupprimerPizzaOptionMenu supprimer = new SupprimerPizzaOptionMenu(dao);
+		
 		
 		/**
 		 * Print somes menus
@@ -28,16 +34,16 @@ public class PizzeriaAdminConsoleApp {
 		 *  - Exist the app
 		 */
 		
-		System.out.println("***** Pizzeria Administration *****");
-		System.out.println("1. Lister les pizzas");
-		System.out.println("2. Ajouter une nouvelle pizza");
-		System.out.println("3. Mettre à jour une pizza");
-		System.out.println("4. Supprimer une pizza");
-		System.out.println("99. Sortir");
+		log.info("***** Pizzeria Administration *****");
+		log.info("1. Lister les pizzas");
+		log.info("2. Ajouter une nouvelle pizza");
+		log.info("3. Mettre à jour une pizza");
+		log.info("4. Supprimer une pizza");
+		log.info("99. Sortir");
 
 		String rep = "";
 
-		System.out.println("Saisir un des numéros pour accéder aux fonctionnalités");
+		log.info("Saisir un des numéros pour accéder aux fonctionnalités");
 		rep = sc.nextLine();
 		switch (rep) {
 		case "1":
@@ -50,8 +56,7 @@ public class PizzeriaAdminConsoleApp {
 		case "4":
 			supprimer.execute(sc);
 		default:
-			System.out.println("Saisir un des numéros pour accéder aux fonctionnalités");
-			rep = sc.nextLine();
+
 
 		}
 

@@ -1,6 +1,8 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.PizzaDaoMemoire;
 
@@ -11,6 +13,7 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 	CategoriePizza newcategorie;
 	double newprix;
 
+	private static Logger log = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 	/**
 	 * Contructor
 	 */
@@ -26,22 +29,22 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 	 */
 	public void execute(Scanner sc) {
 
-		System.out.println("Ajout d'une nouvelle pizza");
+		log.info("Ajout d'une nouvelle pizza");
 
 		do {
 
-			System.out.println("Veuillez insérer le code la pizza");
+			log.info("Veuillez insérer le code la pizza");
 			newcode = sc.nextLine();
 
 			do {
 
-				System.out.println("Veuillez insérer le nom de la pizza");
+				log.info("Veuillez insérer le nom de la pizza");
 
 				newnom = sc.nextLine();
 
 				do {
 
-					System.out.println("Veuillez insérer la catégorie de pizza");
+					log.info("Veuillez insérer la catégorie de pizza");
 					String categStr = sc.nextLine().toUpperCase();
 
 					boolean trouver = false;
@@ -60,7 +63,7 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 
 					do {
 
-						System.out.println("Veuillez insérer le prix de la pizza");
+						log.info("Veuillez insérer le prix de la pizza");
 
 						String newprixStr = sc.nextLine();
 						newprix = Double.parseDouble(newprixStr);
@@ -69,7 +72,7 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 
 						dao.savePizza(nouveau);
 						for (Pizza pizza : dao.findAllPizzas()) {
-							System.out.println(pizza);
+							log.equals(pizza);
 						}
 
 					} while (newprix < 0);

@@ -1,6 +1,4 @@
 package fr.pizzeria.console;
-import fr.pizzeria.console.CategoriePizza.*;
-
 /**
  * Pizza's class is the main class for app.java You can find its attributes with
  * its get/set
@@ -66,9 +64,6 @@ public class Pizza {
 		this.nom = nom;
 	}
 	
-	public CategoriePizza getCategorie(CategoriePizza categorie) {
-		return this.categorie;
-	}
 	
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;

@@ -2,11 +2,13 @@ package fr.pizzeria.console;
 
 
 import java.util.Scanner;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import fr.pizzeria.dao.PizzaDaoMemoire;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
 
+	private static Logger log = LoggerFactory.getLogger(ModifierPizzaOptionMenu.class);
 	/**
 	 * Contructor
 	 */
@@ -34,7 +36,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 
 	public void execute(Scanner sc) {
 
-		System.out.println("Mise à jour d'une pizza");
+		log.info("Mise à jour d'une pizza");
 
 		int idpizza = -1;
 		String editcode;
@@ -42,24 +44,24 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 		double editprix;
 
 		while (!exists(idpizza)) {
-			System.out.println("Saisir le numéro de la pizza à modifier");
+			log.info("Saisir le numéro de la pizza à modifier");
 			idpizza = sc.nextInt();
 			if (exists(idpizza)) {
 
 				do {
 
-					System.out.println("Veuillez insérer le code la pizza");
+					log.info("Veuillez insérer le code la pizza");
 					editcode = sc.nextLine();
 
 					do {
 
-						System.out.println("Veuillez insérer le nom de la pizza");
+						log.info("Veuillez insérer le nom de la pizza");
 
 						editnom = sc.nextLine();
 
 						do {
 
-							System.out.println("Veuillez insérer le prix de la pizza");
+							log.info("Veuillez insérer le prix de la pizza");
 
 							String editprixStr = sc.nextLine();
 							editprix = Double.parseDouble(editprixStr);

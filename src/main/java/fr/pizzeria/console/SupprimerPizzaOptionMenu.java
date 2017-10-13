@@ -1,10 +1,12 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import fr.pizzeria.dao.PizzaDaoMemoire;
 
 public class SupprimerPizzaOptionMenu extends OptionMenu {
+	private static Logger log = LoggerFactory.getLogger(SupprimerPizzaOptionMenu.class);
 
 	public SupprimerPizzaOptionMenu(PizzaDaoMemoire dao) {
 		this.dao = dao;
@@ -25,13 +27,13 @@ public class SupprimerPizzaOptionMenu extends OptionMenu {
 		String confirm = "";
 		
 		while (!exists(idpizza)) {
-			System.out.println("Saisir le numéro de la pizza à supprimer");
+			log.info("Saisir le numéro de la pizza à supprimer");
 			idpizza = sc.nextInt();
 			if (exists(idpizza)) {
 
 				do {
 
-					System.out.println("Etes vous sûr de suprimmer la pizza numéro : "+idpizza+" ? Répondez yes / y ou no / n");
+					log.info("Etes vous sûr de suprimmer la pizza numéro : "+idpizza+" ? Répondez yes / y ou no / n");
 					confirm = sc.nextLine();
 					
 					if(confirm =="yes".toUpperCase() || confirm=="y".toUpperCase()){
