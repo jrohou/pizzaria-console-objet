@@ -19,6 +19,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 
 	private boolean exists(int idpizza) throws Exception {
 		for (Pizza pizza : dao.findAllPizzas()) {
+			log.info(pizza.toString());
 			if (pizza.id == idpizza) {
 				return true;
 			}

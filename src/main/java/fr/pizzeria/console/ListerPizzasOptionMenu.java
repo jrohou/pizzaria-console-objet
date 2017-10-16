@@ -35,7 +35,7 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 		log.info("Liste des pizzas");
 
 		for (Pizza pizza : dao.findAllPizzas()) {
-			log.equals(pizza);
+			log.info(pizza.toString());
 		}
 	}
 }
