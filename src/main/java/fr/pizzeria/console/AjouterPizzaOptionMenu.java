@@ -45,23 +45,22 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 
 				do {
 
-					log.info("Veuillez insérer la catégorie de pizza");
-					String categStr = sc.nextLine().toUpperCase();
-
-					boolean trouver = false;
-					for (CategoriePizza catg : CategoriePizza.values()) {
-
-						if (categStr.equals(catg.getLibelle())) {
-
-							trouver = true;
-						}
+					log.info("Veuillez insérer la catégorie de pizza en fonction de son numéro : ");
+					log.info("1 - Viande"+"\n"+" 2 - Poisson"+ "\n 3 - Sans Viande");
+					String categStr = sc.nextLine();
+					
+					if(categStr.equals("1")){
+						newcategorie = CategoriePizza.VIANDE;
 					}
-					if (!trouver) {
-						newcategorie = CategoriePizza.UNKNOW_NAME;
-					} else {
-						newcategorie = CategoriePizza.valueOf(categStr);
+					else if(categStr.equals("2")) {
+						newcategorie = CategoriePizza.POISSON;
 					}
-
+					else if (categStr.equals("3")) {
+							newcategorie = CategoriePizza.SANS_VIANDE;
+					}
+					else{
+							newcategorie = CategoriePizza.UNKNOW_NAME;
+					}
 					do {
 
 						log.info("Veuillez insérer le prix de la pizza");

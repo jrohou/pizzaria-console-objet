@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDaoMariadb;
-import fr.pizzeria.dao.PizzaDaoMemoire;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
 
@@ -18,7 +17,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 			this.dao = dao;
 	}
 
-	private boolean exists(int idpizza) {
+	private boolean exists(int idpizza) throws Exception {
 		for (Pizza pizza : dao.findAllPizzas()) {
 			if (pizza.id == idpizza) {
 				return true;
@@ -34,15 +33,18 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 	 * Print the arraylist
 	 * 
 	 * @param sc
+	 * @throws Exception 
 	 */
 
-	public void execute(Scanner sc) {
+	public void execute(Scanner sc) throws Exception {
 
 		log.info("Mise à jour d'une pizza");
 
 		int idpizza = -1;
 		String editcode;
 		String editnom;
+		String categStr;
+		CategoriePizza editcategorie;
 		double editprix;
 
 		while (!exists(idpizza)) {
@@ -62,17 +64,37 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 						editnom = sc.nextLine();
 
 						do {
-
-							log.info("Veuillez insérer le prix de la pizza");
-
-							String editprixStr = sc.nextLine();
-							editprix = Double.parseDouble(editprixStr);
+							log.info("Veuillez insérer la catégorie de pizza en fonction de son numéro : ");
+							log.info("1 - Viande"+"\n"+" 2 - Poisson"+ "\n 3 - Sans Viande");
+							 categStr = sc.nextLine();
 							
-							dao.updatePizza(idpizza, editcode, editnom, editprix);
+							if(categStr.equals("1")){
+								editcategorie = CategoriePizza.VIANDE;
+							}
+							else if(categStr.equals("2")) {
+								editcategorie = CategoriePizza.POISSON;
+							}
+							else if (categStr.equals("3")) {
+									editcategorie = CategoriePizza.SANS_VIANDE;
+							}
+							else{
+									editcategorie = CategoriePizza.UNKNOW_NAME;
+							}
+							
+							do {
 
-						} while (editprix < 0);
+								log.info("Veuillez insérer le prix de la pizza");
+	
+								String editprixStr = sc.nextLine();
+								editprix = Double.parseDouble(editprixStr);
+								
+								dao.updatePizza(idpizza, editcode, editnom, editcategorie, editprix);
+							
+							}while (editprix < 0);
 
-					} while (editnom == "");
+						}while (categStr.equals(""));
+
+					} while (editnom.equals(""));
 
 				} while (!exists(idpizza) || editcode == null);
 			}

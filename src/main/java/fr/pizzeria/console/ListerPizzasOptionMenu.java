@@ -27,9 +27,10 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 	 * Print the arraylist
 	 * 
 	 * @param sc
+	 * @throws Exception 
 	 */
 
-	public void execute(Scanner sc) {
+	public void execute(Scanner sc) throws Exception {
 
 		log.info("Liste des pizzas");
 
