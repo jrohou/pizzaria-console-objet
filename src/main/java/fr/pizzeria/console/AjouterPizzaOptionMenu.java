@@ -4,7 +4,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.pizzeria.dao.PizzaDaoMemoire;
+import fr.pizzeria.dao.IPizzaDaoMariadb;
 
 public class AjouterPizzaOptionMenu extends OptionMenu {
 
@@ -17,7 +17,7 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 	/**
 	 * Contructor
 	 */
-	public AjouterPizzaOptionMenu(PizzaDaoMemoire dao) {
+	public AjouterPizzaOptionMenu(IPizzaDaoMariadb dao) {
 		this.dao = dao;
 	}
 
@@ -26,8 +26,9 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 	 * questions Add the new pizza in the arraylist Print the arraylist
 	 * 
 	 * @param sc
+	 * @throws Exception 
 	 */
-	public void execute(Scanner sc) {
+	public void execute(Scanner sc) throws Exception {
 
 		log.info("Ajout d'une nouvelle pizza");
 
@@ -71,9 +72,6 @@ public class AjouterPizzaOptionMenu extends OptionMenu {
 						Pizza nouveau = new Pizza(newcode, newnom, newcategorie, newprix);
 
 						dao.savePizza(nouveau);
-						for (Pizza pizza : dao.findAllPizzas()) {
-							log.equals(pizza);
-						}
 
 					} while (newprix < 0);
 

@@ -64,7 +64,10 @@ public class Pizza {
 		this.nom = nom;
 	}
 	
-	
+		public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;
 	}
@@ -76,5 +79,6 @@ public class Pizza {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+
 
 }

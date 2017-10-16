@@ -2,15 +2,15 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaDaoMemoire;
+import fr.pizzeria.dao.IPizzaDaoMariadb;
 
 public abstract class OptionMenu {
 	
-	PizzaDaoMemoire dao;
+	IPizzaDaoMariadb dao;
 	
 	public  OptionMenu() {
 		
 		
 	}
-	public abstract void execute(Scanner sc);
+	public abstract void execute(Scanner sc) throws Exception;
 }

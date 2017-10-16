@@ -59,7 +59,7 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	public void deletePizza(int idpizza) {
 		for (Pizza p : findAllPizzas()) {
 			if (p.getId() == idpizza){
-				//p.remove(idpizza);
+				//p.remove(idpizza); 
 			}
 		}
 		

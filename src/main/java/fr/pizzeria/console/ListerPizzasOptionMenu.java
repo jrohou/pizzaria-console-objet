@@ -4,6 +4,8 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import fr.pizzeria.dao.IPizzaDaoMariadb;
 import fr.pizzeria.dao.PizzaDaoMemoire;
 
 public class ListerPizzasOptionMenu extends OptionMenu {
@@ -15,7 +17,7 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 	 * @param sc
 	 */
 
-	public ListerPizzasOptionMenu(PizzaDaoMemoire dao) {
+	public ListerPizzasOptionMenu(IPizzaDaoMariadb dao) {
 			this.dao = dao;
 	}
 
