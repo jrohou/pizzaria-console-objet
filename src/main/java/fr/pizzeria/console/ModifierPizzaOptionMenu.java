@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.PizzaDaoHibernate;
-import fr.pizzeria.dao.PizzaDaoMariadb;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
 
@@ -18,7 +17,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 			this.dao = dao;
 	}
 
-	private boolean exists(int idpizza) throws Exception {
+	private boolean exists(int idpizza){
 		for (Pizza pizza : dao.findAllPizzas()) {
 			log.info(pizza.toString());
 			if (pizza.id == idpizza) {

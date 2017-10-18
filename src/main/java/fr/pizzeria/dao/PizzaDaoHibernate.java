@@ -8,19 +8,20 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import fr.pizzeria.console.CategoriePizza;
 import fr.pizzeria.console.Pizza;
-import fr.pizzeria.console.SupprimerPizzaOptionMenu;
 
 public class PizzaDaoHibernate implements IPizzaDao {
 	
-	private static Logger log = LoggerFactory.getLogger(PizzaDaoHibernate.class);
+	/** EntityManagerFactory
+	 *  entityManagerFactory
+	 */
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pizza_hiber");
 	
-
+	
+	/* (non-Javadoc)
+	 * @see fr.pizzeria.dao.IPizzaDao#savePizza(fr.pizzeria.console.Pizza)
+	 */
 	@Override
 	public void savePizza(Pizza pizza)  {
 		EntityManager em = entityManagerFactory.createEntityManager();
@@ -34,6 +35,9 @@ public class PizzaDaoHibernate implements IPizzaDao {
 		em.close();
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.pizzeria.dao.IPizzaDao#updatePizza(int, java.lang.String, java.lang.String, fr.pizzeria.console.CategoriePizza, double)
+	 */
 	@Override
 	public void updatePizza(int idpizza, String editcode, String editnom, CategoriePizza editcategorie, double editprix) {
 		
@@ -53,6 +57,9 @@ public class PizzaDaoHibernate implements IPizzaDao {
 		em.close();
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.pizzeria.dao.IPizzaDao#deletePizza(int)
+	 */
 	@Override
 	public void deletePizza(int idpizza) {
 		
@@ -68,6 +75,9 @@ public class PizzaDaoHibernate implements IPizzaDao {
 		em.close();
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.pizzeria.dao.IPizzaDao#findAllPizzas()
+	 */
 	@Override
 	public List<Pizza> findAllPizzas() {
 		
@@ -78,16 +88,6 @@ public class PizzaDaoHibernate implements IPizzaDao {
 		em.close();
 		
 		return list;
-	}
-
-	@Override
-	public Pizza findCategorie() {
-		return null;
-	}
-
-	@Override
-	public void updatePizza(int idpizza, String editcode, String editnom, double editprix) {
-		
 	}
 
 }

@@ -30,6 +30,12 @@ public class Pizza {
 
 	static int count = 0;
 
+	/** Constructor for Pizza.java
+	 * @param code
+	 * @param nom
+	 * @param categorie
+	 * @param prix
+	 */
 	public Pizza(String code, String nom, CategoriePizza categorie, double prix) {
 		this.code = code;
 		this.nom = nom;
@@ -38,6 +44,9 @@ public class Pizza {
 		id = count++;
 	}
 	
+	/** Constructor for Pizza.java
+	 * 
+	 */
 	public Pizza(){
 		
 	}

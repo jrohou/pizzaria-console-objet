@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzaDaoMariadb;
 
 public class AjouterPizzaOptionMenu extends OptionMenu {
 
