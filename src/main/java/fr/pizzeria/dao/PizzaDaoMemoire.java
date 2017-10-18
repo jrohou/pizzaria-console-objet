@@ -1,5 +1,6 @@
 package fr.pizzeria.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,12 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	@Override
 	public Pizza findCategorie() {
 		return null;
+	}
+
+	@Override
+	public void updatePizza(int idpizza, String editcode, String editnom, CategoriePizza editcategorie, double editprix)
+			throws SQLException, Exception {
+		
 	}
 
 }

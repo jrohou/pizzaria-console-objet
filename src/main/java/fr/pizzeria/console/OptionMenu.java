@@ -2,11 +2,11 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.IPizzaDaoMariadb;
+import fr.pizzeria.dao.IPizzaDao;
 
 public abstract class OptionMenu {
 	
-	IPizzaDaoMariadb dao;
+	IPizzaDao dao;
 	
 	public  OptionMenu() {
 		

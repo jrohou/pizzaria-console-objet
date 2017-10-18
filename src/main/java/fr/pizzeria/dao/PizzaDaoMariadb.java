@@ -16,9 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class IPizzaDaoMariadb implements IPizzaDao {
+public class PizzaDaoMariadb implements IPizzaDao {
 	
-	private static Logger log = LoggerFactory.getLogger(IPizzaDaoMariadb.class);
+	private static Logger log = LoggerFactory.getLogger(PizzaDaoMariadb.class);
 	
 	public Connection connection() throws Exception {
 		
@@ -76,7 +76,6 @@ public class IPizzaDaoMariadb implements IPizzaDao {
 
 	@Override
 	public void deletePizza(int idpizza) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -105,7 +104,11 @@ public class IPizzaDaoMariadb implements IPizzaDao {
 
 	@Override
 	public Pizza findCategorie() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updatePizza(int idpizza, String editcode, String editnom, double editprix) {
+		
 	}
 }

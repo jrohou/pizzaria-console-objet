@@ -5,7 +5,8 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.pizzeria.dao.IPizzaDaoMariadb;
+import fr.pizzeria.dao.PizzaDaoHibernate;
+import fr.pizzeria.dao.PizzaDaoMariadb;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
 
@@ -13,7 +14,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 	/**
 	 * Contructor
 	 */
-	public ModifierPizzaOptionMenu(IPizzaDaoMariadb dao) {
+	public ModifierPizzaOptionMenu(PizzaDaoHibernate dao) {
 			this.dao = dao;
 	}
 
@@ -41,17 +42,16 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 
 		log.info("Mise à jour d'une pizza");
 
-		int idpizza = -1;
+		int idpizza;
+		String idpizzastr;
 		String editcode;
 		String editnom;
 		String categStr;
 		CategoriePizza editcategorie;
 		double editprix;
 
-		while (!exists(idpizza)) {
 			log.info("Saisir le numéro de la pizza à modifier");
-			idpizza = sc.nextInt();
-			if (exists(idpizza)) {
+			idpizzastr = sc.nextLine();
 
 				do {
 
@@ -89,6 +89,8 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 								String editprixStr = sc.nextLine();
 								editprix = Double.parseDouble(editprixStr);
 								
+								idpizza = Integer.parseInt(idpizzastr);
+								
 								dao.updatePizza(idpizza, editcode, editnom, editcategorie, editprix);
 							
 							}while (editprix < 0);
@@ -97,11 +99,9 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 
 					} while (editnom.equals(""));
 
-				} while (!exists(idpizza) || editcode == null);
-			}
+				} while (!exists(idpizza) || editcode.equals(""));
 
 		}
 
-	}
 
 }

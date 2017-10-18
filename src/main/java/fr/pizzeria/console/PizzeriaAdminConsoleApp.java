@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.pizzeria.dao.IPizzaDaoMariadb;
+import fr.pizzeria.dao.PizzaDaoHibernate;
 
 public class PizzeriaAdminConsoleApp {
 
@@ -15,8 +15,7 @@ public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) throws Exception {
 		
-		IPizzaDaoMariadb dao = new IPizzaDaoMariadb();
-		dao.connection();
+		PizzaDaoHibernate dao = new PizzaDaoHibernate();
 
 		ListerPizzasOptionMenu lister = new ListerPizzasOptionMenu(dao);
 		AjouterPizzaOptionMenu ajouter = new AjouterPizzaOptionMenu(dao);
@@ -51,10 +50,13 @@ public class PizzeriaAdminConsoleApp {
 			break;
 		case "2":
 			ajouter.execute(sc);
+			break;
 		case "3":
 			modifier.execute(sc);
+			break;
 		case "4":
 			supprimer.execute(sc);
+			break;
 		default:
 
 

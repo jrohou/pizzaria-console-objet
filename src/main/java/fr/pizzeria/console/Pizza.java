@@ -1,4 +1,12 @@
 package fr.pizzeria.console;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Pizza's class is the main class for app.java You can find its attributes with
  * its get/set
@@ -6,11 +14,17 @@ package fr.pizzeria.console;
  * @author ETY2
  *
  */
+@Entity
+@Table(name="pizza")
 public class Pizza {
 
+	@Id
+	@Column(name="id")
 	int id;
+	@Column
 	String code;
 	String nom;
+	@Enumerated(EnumType.STRING)
 	CategoriePizza categorie;
 	double prix;
 
@@ -22,6 +36,10 @@ public class Pizza {
 		this.categorie = categorie;
 		this.prix = prix;
 		id = count++;
+	}
+	
+	public Pizza(){
+		
 	}
 
 	/**
